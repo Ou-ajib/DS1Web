@@ -35,12 +35,14 @@ function activeUserIndex(){
 }
 
 function launcer(){
+    console.log('launcer');
     var number =  Math.floor((Math.random() * 6) + 1);
     de.setAttribute("src", "de-" +number+ ".png");
     de.style.display = "";
     if(number != 1)
             temp_scores[activeUserIndex()].innerHTML = parseInt(temp_scores[activeUserIndex()].innerHTML) + number;
     else {
+        de.style.display = "none";
         temp_scores[activeUserIndex()].innerHTML = 0;
         changePlayer();
     }
@@ -57,8 +59,14 @@ function joueurSuivant(){
     de.style.display = "none";
 }
 
+function nouveauPartie(){
+    btn_launcer.disabled  = false;
+    btn_passer.disabled  = false;
+}
+
 btn_launcer.addEventListener('click', launcer);
 btn_passer.addEventListener('click', joueurSuivant);
+btn_nouveau.addEventListener('click', nouveauPartie);
 
 
 init();
