@@ -1,5 +1,7 @@
 console.log("hello");
 
+const SCORE_MAX = 30;
+
 var scores = document.getElementsByClassName("score-joueur");
 var temp_scores = document.getElementsByClassName("score-joueur-courent");
 var joueur0_panel = document.querySelector(".panel-joueur-0");
@@ -37,7 +39,7 @@ function launcer(){
     de.setAttribute("src", "de-" +number+ ".png");
     de.style.display = "";
     if(number != 1)
-            temp_scores[activeUserIndex()].innerHTML = parseInt(temp_scores[0].innerHTML) + number;
+            temp_scores[activeUserIndex()].innerHTML = parseInt(temp_scores[activeUserIndex()].innerHTML) + number;
     else {
         temp_scores[activeUserIndex()].innerHTML = 0;
         changePlayer();
@@ -47,9 +49,12 @@ function launcer(){
 function joueurSuivant(){
     scores[activeUserIndex()].innerHTML = parseInt(scores[activeUserIndex()].innerHTML) + parseInt(temp_scores[activeUserIndex()].innerHTML);
     temp_scores[activeUserIndex()].innerHTML = 0;
-    changePlayer();
-    de.style.display = "none";
+    if(parseInt(scores[activeUserIndex()].innerHTML) >= SCORE_MAX){
+        btn_launcer.setAttribute("disabled", "true");
+        btn_passer.setAttribute("disabled", "true");
+    } else changePlayer();
 
+    de.style.display = "none";
 }
 
 btn_launcer.addEventListener('click', launcer);
