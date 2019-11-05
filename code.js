@@ -1,11 +1,11 @@
-console.log("hello");
-
+// SADIK Mouaad OUAJIB Aissam B23
 const SCORE_MAX = 30;
 
 var scores = document.getElementsByClassName("score-joueur");
 var temp_scores = document.getElementsByClassName("score-joueur-courent");
 var joueur0_panel = document.querySelector(".panel-joueur-0");
 var joueur1_panel = document.querySelector(".panel-joueur-1");
+var nom_joueur = document.getElementsByClassName("nom-joueur");
 var de = document.querySelector(".de");
 var btn_launcer = document.querySelector(".btn-lancer");
 var btn_passer = document.querySelector(".btn-passe");
@@ -35,7 +35,6 @@ function activeUserIndex(){
 }
 
 function launcer(){
-    console.log('launcer');
     var number =  Math.floor((Math.random() * 6) + 1);
     de.setAttribute("src", "de-" +number+ ".png");
     de.style.display = "";
@@ -54,6 +53,7 @@ function joueurSuivant(){
     if(parseInt(scores[activeUserIndex()].innerHTML) >= SCORE_MAX){
         btn_launcer.setAttribute("disabled", "true");
         btn_passer.setAttribute("disabled", "true");
+        nom_joueur[activeUserIndex()].innerHTML = "Vainqueur!";
     } else changePlayer();
 
     de.style.display = "none";
@@ -62,6 +62,8 @@ function joueurSuivant(){
 function nouveauPartie(){
     btn_launcer.disabled  = false;
     btn_passer.disabled  = false;
+    nom_joueur[activeUserIndex()].innerHTML = "Joueur "+ (activeUserIndex()+1)+"<i class='ion-social-tux'></i>";
+    init();
 }
 
 btn_launcer.addEventListener('click', launcer);
