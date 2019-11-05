@@ -1,5 +1,5 @@
-// SADIK Mouaad OUAJIB Aissam B23
-const SCORE_MAX = 30;
+// SADIK Mouaad-OUAJIB Aissam B23
+var SCORE_MAX = 30;
 
 var scores = document.getElementsByClassName("score-joueur");
 var temp_scores = document.getElementsByClassName("score-joueur-courent");
@@ -65,10 +65,26 @@ function nouveauPartie(){
     nom_joueur[activeUserIndex()].innerHTML = "Joueur "+ (activeUserIndex()+1)+"<i class='ion-social-tux'></i>";
     init();
 }
-
+var button_max = document.createElement("button");
+button_max.innerHTML = "Changer Score Max";
+button_max.style.marginLeft = "20px";
+button_max.style.cssFloat = "left";
+var label = document.createElement("LABEL");
+label.innerHTML = "Score Max : ";
+label.style.marginLeft = "20px";
+var input = document.createElement("INPUT");
+input.setAttribute("type", "number");
+input.setAttribute("value", 30);
+input.setAttribute("min", 10);
+input.style.margin = "20px";
+input.style.padding = "10px";
+document.body.appendChild(label);
+document.body.appendChild(input);
+document.body.appendChild(button_max);
 btn_launcer.addEventListener('click', launcer);
 btn_passer.addEventListener('click', joueurSuivant);
 btn_nouveau.addEventListener('click', nouveauPartie);
-
-
+button_max.addEventListener('click',function (){
+    SCORE_MAX = parseInt(input.value);
+});
 init();
